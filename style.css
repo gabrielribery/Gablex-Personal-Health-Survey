@@ -1,0 +1,35 @@
+.form-range {
+    width: 50px; /* Breite des Sliders */
+    height: 1.25rem; /* Höhe des Sliders */
+    appearance: none; /* Entfernt das Standard-Styling */
+    background-color: #f1f1f1; /* Hintergrundfarbe des Sliders */
+    border-radius: 0.5rem; /* Radius der Slider-Kurve */
+  }
+  
+  /* Farbe des Sliders bei Bewegung */
+  .form-range::-webkit-slider-thumb {
+    appearance: none; /* Entfernt das Standard-Styling */
+    width: 1.25rem; /* Breite des Slider-Daumens */
+    height: 1.25rem; /* Höhe des Slider-Daumens */
+    background-color: #ff0000; /* Farbe des Slider-Daumens */
+    border-radius: 50%; /* Radius des Slider-Daumens für runde Form */
+    cursor: pointer; /* Zeigt den Cursor als Zeiger an */
+  }
+  
+  /* Effekte bei Hover */
+  .form-range:hover {
+    background-color: #ff0e0e; /* Hintergrundfarbe des Sliders bei Hover */
+  }
+  
+  /* Effekte bei Aktivierung */
+  .form-range:active {
+    background-color: #f80505; /* Hintergrundfarbe des Sliders bei Aktivierung */
+  }
+  
+  /* Farbe des Slider-Fortschritts */
+  .form-range::-webkit-slider-runnable-track {
+    height: 0.5rem; /* Höhe des Slider-Fortschritts */
+    background-color: #ff0000; /* Farbe des Slider-Fortschritts */
+    border-radius: 0.25rem; /* Radius des Slider-Fortschritts für runde Form */
+  }
+  

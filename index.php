@@ -13,33 +13,47 @@
   <?php include 'header.php'; ?>
 
   <div class="container">
-  <h1>Startseite</h1>
-  <p>Willkommen zur Umfrage. Bitte beantworten Sie die folgenden Fragen:</p>
-  <form action="fragen/q2.php" method="post" onsubmit="return validateForm()">
-    <div class="mb-3">
-      <label for="physical-health">Wie gesund bist du körperlich?</label>
-      <input type="range" class="form-range" id="physical-health" name="physical-health" min="0" max="5" value="0" oninput="updateSliderValue(this.value)">
-      <span id="slider-value">0</span>
+    <div class="row">
+      <div class="col-3">
+        <!-- Spalte links -->
+        <!-- Hier kannst du später das Video einfügen -->
+      </div>
+      <div class="col-6">
+        <!-- Spalte mitte -->
+        <h1>Startseite</h1>
+        <p>Willkommen zur Umfrage. Bitte beantworten Sie die folgenden Fragen:</p>
+        <form action="fragen/q2.php" method="post" onsubmit="return validateForm()">
+          <div class="mb-3">
+            <label for="physical-health">Wie gesund bist du körperlich?</label>
+            <input type="range" class="form-range" id="physical-health" name="physical-health" min="0" max="5" value="0" oninput="updateSliderValue(this.value)">
+            <span id="slider-value">0</span>
+          </div>
+          <button type="submit" class="btn btn-primary">Weiter</button>
+        </form>
+      </div>
+      <div class="col-3">
+        <!-- Spalte rechts -->
+        <!-- Hier kannst du später Text einfügen -->
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Weiter</button>
-  </form>
-</div>
+  </div>
 
-<script>
-  function updateSliderValue(value) {
-  document.getElementById("slider-value").textContent = value;
-}
-function validateForm() {
-  var sliderValue = document.getElementById("physical-health").value;
-  
-  if (sliderValue == 0) {
-    alert("Bitte wählen Sie eine Bewertung für Ihre körperliche Gesundheit.");
-    return false; // Blockiert das Absenden des Formulars
-  }
-  
-  return true; // Erlaubt das Absenden des Formulars
-}
-</script>
+  <script>
+    function updateSliderValue(value) {
+      document.getElementById("slider-value").textContent = value;
+    }
+
+    function validateForm() {
+      var sliderValue = document.getElementById("physical-health").value;
+
+      if (sliderValue == 0) {
+        alert("Bitte wählen Sie eine Bewertung für Ihre körperliche Gesundheit.");
+        return false; // Blockiert das Absenden des Formulars
+      }
+
+      return true; // Erlaubt das Absenden des Formulars
+    }
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
