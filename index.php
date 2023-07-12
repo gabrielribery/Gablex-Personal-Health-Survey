@@ -7,20 +7,21 @@
   <title>Umfrage</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Fügen Sie hier Ihre benutzerdefinierten Styles hinzu */
+  </style>
 </head>
 
 <body>
   <?php include 'header.php'; ?>
-
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-md-4">
         <!-- Spalte links -->
         <!-- Hier kannst du später das Video einfügen -->
       </div>
-      <div class="col-6">
+      <div class="col-md-4">
         <!-- Spalte mitte -->
-        <h1>Startseite</h1>
         <p>Willkommen zur Umfrage. Bitte beantworten Sie die folgenden Fragen:</p>
         <form action="fragen/q2.php" method="post" onsubmit="return validateForm()">
           <div class="mb-3">
@@ -31,7 +32,7 @@
           <button type="submit" class="btn btn-primary">Weiter</button>
         </form>
       </div>
-      <div class="col-3">
+      <div class="col-md-4">
         <!-- Spalte rechts -->
         <!-- Hier kannst du später Text einfügen -->
       </div>
