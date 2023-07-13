@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div class="container">
     <h1>Frage 10</h1>
-    <form action="q10.php" method="post">
+    <form action="../feedback.php" method="post">
       <div class="mb-3">
         <label for="microwave-meals">An einem typischen Tag: Wie viele deiner Malzeiten kommen aus der Mikrowelle oder sind schon fertig zubereitet?</label>
         <input type="number" class="form-control" id="microwave-meals" name="microwave-meals">
