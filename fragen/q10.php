@@ -2,9 +2,12 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $_SESSION['microwave-meals'] = $_POST['microwave-meals'];
-  header('Location: ../feedback.php');
-  exit;
+  if (isset($_POST['microwave-meals'])) { // Überprüfen, ob die Frage zu "supplements" beantwortet wurde (aktuelle Frage)
+    $_SESSION['fruit-meals'] = $_POST['fruit-meals'];   // Speichern der vorherigen Benutzerantwort in einer Session-Variablen um das am Ende zusammen zu zählen
+    // Weiterleitung zur nächsten Frage
+    header('Location: ../feedback.php'); //Die Funktion "header" ist anscheinend ein vorgegebener Funktionsname in PHP der speziell für das Senden von HTTP-Headern verwendet wird
+    exit;
+  }
 }
 ?>
 
