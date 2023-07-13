@@ -2,13 +2,10 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Überprüfen, ob die Frage zu "supplements" beantwortet wurde
-  if (isset($_POST['supplements'])) {
-    // Speichern der Benutzerantwort in einer Session-Variablen um das am Ende zusammen zu zählen
-    $_SESSION['physical_health'] = $_POST['physical-health'];
-
+  if (isset($_POST['supplements'])) { // Überprüfen, ob die Frage zu "supplements" beantwortet wurde (aktuelle Frage)
+    $_SESSION['physical_health'] = $_POST['physical-health'];   // Speichern der vorherigen Benutzerantwort in einer Session-Variablen um das am Ende zusammen zu zählen
     // Weiterleitung zur nächsten Frage
-    header('Location: q3.php');
+    header('Location: q3.php'); //Die Funktion "header" ist anscheinend ein vorgegebener Funktionsname in PHP der speziell für das Senden von HTTP-Headern verwendet wird
     exit;
   }
 }
@@ -30,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div class="container">
     <h1>Frage 2</h1>
-    <form action="q3.php" method="post" onsubmit="return validateForm()">
+    <form action="q3.php" method="post" onsubmit="return validateForm()"> <!-- Weiterleitng der Daten und des Users an form3.php sofern validiert durch js-->
       <div class="mb-3">
         <label for="supplements">Nimmst du Nahrungsergänzungsmittel?</label><br>
         <div class="form-check form-check-inline">
@@ -54,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       if (!supplementsYes.checked && !supplementsNo.checked) {
         alert("Bitte wähle eine Antwort aus.");
-        return false; // Blockiert das Absenden des Formulars
+        return false;
       }
 
-      return true; // Erlaubt das Absenden des Formulars
+      return true;
     }
   </script>
 </body>

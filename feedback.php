@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-// Überprüfung, ob die erforderlichen Session-Variablen gesetzt sind
 if (!isset($_SESSION['physical_health'], $_SESSION['supplements'], $_SESSION['physical_activity'], $_SESSION['activity_type'], $_SESSION['activity_importance'], $_SESSION['carbohydrates_meals'], $_SESSION['protein_meals'], $_SESSION['vegetable_meals'], $_SESSION['fruit_meals'], $_SESSION['microwave_meals'])) {
-  // Weiterleitung zur Startseite, wenn nicht alle Fragen beantwortet wurden
-  header('Location: index.php');
+
+  header('Location: index.php'); // Weiterleitung zur Startseite, wenn nicht alle Fragen beantwortet wurden
   exit;
 }
 
@@ -20,8 +19,8 @@ $vegetableMeals = $_SESSION['vegetable_meals'];
 $fruitMeals = $_SESSION['fruit_meals'];
 $microwaveMeals = $_SESSION['microwave_meals'];
 
-$thresholdPhysicalActivity = 3; // Schwellenwert für mittlere Wichtigkeit der körperlichen Aktivität
-$thresholdNutrition = 2; // Schwellenwert für ausgeglichene Ernährung
+$thresholdPhysicalActivity = 3; // Schwellenwert für mittlere Wichtigkeit der körperlichen Aktivität wie in simplonline verlangt
+$thresholdNutrition = 2; // Schwellenwert für ausgeglichene Ernährung wie in simplonline verlangt
 
 $overallScore = 0;
 
@@ -35,15 +34,42 @@ if ($supplements === 'yes') {
   $overallScore++;
 }
 
-// Bewertung der körperlichen Aktivität
+/// Bewertung der körperlichen Aktivität
 if ($physicalActivity >= $thresholdPhysicalActivity && $activityType !== 'none') {
   $overallScore++;
 }
 
-// Bewertung der Ernährung
+// Bewertung der Ernährung (Kohlenhydrate)
+if ($carbohydratesMeals >= $thresholdNutrition) {
+  $overallScore++;
+}
+
+// Bewertung der Ernährung (Protein)
+if ($proteinMeals >= $thresholdNutrition) {
+  $overallScore++;
+}
+
+// Bewertung der Ernährung (Gemüse)
+if ($vegetableMeals >= $thresholdNutrition) {
+  $overallScore++;
+}
+
+// Bewertung der Ernährung (Früchte)
+if ($fruitMeals >= $thresholdNutrition) {
+  $overallScore++;
+}
+// Bewertung der Ernährung (Kohlenhydrate, Protein, Gemüse, Früchte)
 if ($carbohydratesMeals >= $thresholdNutrition && $proteinMeals >= $thresholdNutrition && $vegetableMeals >= $thresholdNutrition && $fruitMeals >= $thresholdNutrition) {
   $overallScore++;
 }
+
+// Klassifizierung basierend auf der Gesamtauswertung
+if ($overallScore >= 4) {
+  $classification = 'Toll! Du lebst gesund und ohne Spass...wie langweilig!';
+} else {
+  $classification = 'Hmmm...wahrscheinlich lebst du nicht mehr allzulange aber Hey...du hattest sicher ordentlich Spass!';
+}
+
 
 // Klassifizierung basierend auf der Gesamtauswertung
 if ($overallScore >= 4) {

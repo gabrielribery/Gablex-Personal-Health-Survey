@@ -7,9 +7,6 @@
   <title>Umfrage</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Fügen Sie hier Ihre benutzerdefinierten Styles hinzu */
-  </style>
 </head>
 
 <body>
@@ -18,7 +15,6 @@
     <div class="row">
       <div class="col-md-4">
         <!-- Spalte links -->
-        <!-- Hier kannst du später das Video einfügen -->
       </div>
       <div class="col-md-4">
         <!-- Spalte mitte -->
@@ -34,7 +30,6 @@
       </div>
       <div class="col-md-4">
         <!-- Spalte rechts -->
-        <!-- Hier kannst du später Text einfügen -->
       </div>
     </div>
   </div>
@@ -49,10 +44,10 @@
 
       if (sliderValue == 0) {
         alert("Bitte wählen Sie eine Bewertung für Ihre körperliche Gesundheit.");
-        return false; // Blockiert das Absenden des Formulars
+        return false;
       }
 
-      return true; // Erlaubt das Absenden des Formulars
+      return true;
     }
   </script>
 
