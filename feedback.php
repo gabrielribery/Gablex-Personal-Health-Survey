@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-// Überprüfung, ob die erforderlichen Session-Variablen gesetzt sind
 if (!isset($_SESSION['physical_health'], $_SESSION['supplements'], $_SESSION['physical_activity'], $_SESSION['activity_type'], $_SESSION['activity_importance'], $_SESSION['carbohydrates_meals'], $_SESSION['protein_meals'], $_SESSION['vegetable_meals'], $_SESSION['fruit_meals'], $_SESSION['microwave_meals'])) {
-  // Weiterleitung zur Startseite, wenn nicht alle Fragen beantwortet wurden
-  header('Location: index.php');
+  header('Location: index.php'); // Weiterleitung zur Startseite, wenn nicht alle Fragen beantwortet wurden
   exit;
 }
 
@@ -20,8 +18,8 @@ $vegetableMeals = $_SESSION['vegetable_meals'];
 $fruitMeals = $_SESSION['fruit_meals'];
 $microwaveMeals = $_SESSION['microwave_meals'];
 
-$thresholdPhysicalActivity = 3; // Schwellenwert für mittlere Wichtigkeit der körperlichen Aktivität
-$thresholdNutrition = 2; // Schwellenwert für ausgeglichene Ernährung
+$thresholdPhysicalActivity = 3; // Schwellenwert für mittlere Wichtigkeit der körperlichen Aktivität wie in simplonline verlangt
+$thresholdNutrition = 2; // Schwellenwert für ausgeglichene Ernährung wie in simplonline verlangt
 
 $overallScore = 0;
 
@@ -35,21 +33,25 @@ if ($supplements === 'yes') {
   $overallScore++;
 }
 
-// Bewertung der körperlichen Aktivität
+/// Bewertung der körperlichen Aktivität zusammen genommen da gem Aufgabenstellung sobald eins unterdem Schwellenwert ist oder keine zusätzliche Aktivität ausgweählt ist, ist man ungesund.
 if ($physicalActivity >= $thresholdPhysicalActivity && $activityType !== 'none') {
   $overallScore++;
 }
 
-// Bewertung der Ernährung
-if ($carbohydratesMeals >= $thresholdNutrition && $proteinMeals >= $thresholdNutrition && $vegetableMeals >= $thresholdNutrition && $fruitMeals >= $thresholdNutrition) {
+// Bewertung der Ernährung Kohlenhydrate, Protein, Gemüse, Früchte zusammen genommen da gem Aufgabenstellung sobald eins unterdem Schwellen wert ist oder nichts eingetragen wurde man ungesund ist.
+if ($carbohydratesMeals >= 2 && $proteinMeals >= 2 && $vegetableMeals >= 1 && $fruitMeals >= 1) {
   $overallScore++;
 }
 
 // Klassifizierung basierend auf der Gesamtauswertung
 if ($overallScore >= 4) {
   $classification = 'Toll! Du lebst gesund und ohne Spass...wie langweilig!';
+  $gif = 'images/spass.gif';
+  $sound = 'sounds/spass.mp3';
 } else {
   $classification = 'Hmmm...wahrscheinlich lebst du nicht mehr allzulange aber Hey...du hattest sicher ordentlich Spass!';
+  $gif = 'images/spass.gif';
+  $sound = 'sounds/spass.mp3';
 }
 
 // Zurücksetzen der Session-Variablen
@@ -75,6 +77,15 @@ session_destroy();
     <h1>Feedback</h1>
     <p><?php echo $classification; ?></p>
   </div>
+  <div class="container">
+  <h1>Feedback</h1>
+  <p><?php echo $classification; ?></p>
+  <?php if ($overallScore >= 4): ?>
+    <video src="<?php echo $video; ?>" controls></video>
+  <?php else: ?>
+    <img src="<?php echo $gif; ?>" alt="GIF" />
+  <?php endif; ?>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>

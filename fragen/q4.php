@@ -7,8 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header('Location: q4.php');
     exit;
-  } else {
-    // $error_message = "Bitte beantworten Sie die Frage zu Supplements.";
   }
 }
 ?>
