@@ -6,45 +6,81 @@ if (!isset($_SESSION['physical_health'], $_SESSION['supplements'], $_SESSION['ph
   exit;
 }
 
-// Berechnung der Gesamtauswertung
+// Einzelbewertungen
+$physicalHealthScore = 0;
+$supplementsScore = 0;
+$physicalActivityScore = 0;
+$carbohydratesMealsScore = 0;
+$proteinMealsScore = 0;
+$vegetableMealsScore = 0;
+$fruitMealsScore = 0;
+$microwaveMealsScore = 0;
+
+// Bewertung der körperlichen Gesundheit (q1)
 $physicalHealth = $_SESSION['physical_health'];
-$supplements = $_SESSION['supplements'];
-$physicalActivity = $_SESSION['physical_activity'];
-$activityType = $_SESSION['activity_type'];
-$activityImportance = $_SESSION['activity_importance'];
-$carbohydratesMeals = $_SESSION['carbohydrates_meals'];
-$proteinMeals = $_SESSION['protein_meals'];
-$vegetableMeals = $_SESSION['vegetable_meals'];
-$fruitMeals = $_SESSION['fruit_meals'];
-$microwaveMeals = $_SESSION['microwave_meals'];
-
-$thresholdPhysicalActivity = 3; // Schwellenwert für mittlere Wichtigkeit der körperlichen Aktivität wie in simplonline verlangt
-$thresholdNutrition = 2; // Schwellenwert für ausgeglichene Ernährung wie in simplonline verlangt
-
-$overallScore = 0;
-
-// Bewertung der körperlichen Gesundheit
 if ($physicalHealth >= 3) {
-  $overallScore++;
+  $physicalHealthScore = 1;
 }
 
-// Bewertung der Nahrungsergänzungsmittel
+// Bewertung der Nahrungsergänzungsmittel (q2)
+$supplements = $_SESSION['supplements'];
 if ($supplements === 'yes') {
-  $overallScore++;
+  $supplementsScore = 1;
 }
 
-/// Bewertung der körperlichen Aktivität zusammen genommen da gem Aufgabenstellung sobald eins unterdem Schwellenwert ist oder keine zusätzliche Aktivität ausgweählt ist, ist man ungesund.
-if ($physicalActivity >= $thresholdPhysicalActivity && $activityType !== 'none') {
-  $overallScore++;
+// Bewertung der körperlichen Aktivität (q3)
+$physicalActivity = $_SESSION['physical_activity'];
+if ($physicalActivity >= 3) {
+  $physicalActivityScore = 1;
 }
 
-// Bewertung der Ernährung Kohlenhydrate, Protein, Gemüse, Früchte zusammen genommen da gem Aufgabenstellung sobald eins unterdem Schwellen wert ist oder nichts eingetragen wurde man ungesund ist.
-if ($carbohydratesMeals >= 2 && $proteinMeals >= 2 && $vegetableMeals >= 1 && $fruitMeals >= 1) {
-  $overallScore++;
+// Bewertung des Aktivitätstyps (q4)
+$activityType = $_SESSION['activity_type'];
+if ($activityType !== 'none') {
+  $physicalActivityScore = 1;
 }
+
+// Bewertung der Aktivitätswichtigkeit (q5)
+$activityImportance = $_SESSION['activity_importance'];
+if ($activityImportance >= 3) {
+  $physicalActivityScore = 1;
+}
+
+// Bewertung der Ernährung (Kohlenhydrate) (q6)
+$carbohydratesMeals = $_SESSION['carbohydrates_meals'];
+if ($carbohydratesMeals >= 2) {
+  $carbohydratesMealsScore = 1;
+}
+
+// Bewertung der Ernährung (Protein) (q7)
+$proteinMeals = $_SESSION['protein_meals'];
+if ($proteinMeals >= 2) {
+  $proteinMealsScore = 1;
+}
+
+// Bewertung der Ernährung (Gemüse) (q8)
+$vegetableMeals = $_SESSION['vegetable_meals'];
+if ($vegetableMeals >= 1) {
+  $vegetableMealsScore = 1;
+}
+
+// Bewertung der Ernährung (Früchte) (q9)
+$fruitMeals = $_SESSION['fruit_meals'];
+if ($fruitMeals >= 1) {
+  $fruitMealsScore = 1;
+}
+
+// Bewertung der Ernährung (Mikrowellen-Gerichte) (q10)
+$microwaveMeals = $_SESSION['microwave_meals'];
+if ($microwaveMeals === 'no') {
+  $microwaveMealsScore = 1;
+}
+
+// Gesamtbewertung
+$overallScore = $physicalHealthScore + $supplementsScore + $physicalActivityScore + $carbohydratesMealsScore + $proteinMealsScore + $vegetableMealsScore + $fruitMealsScore + $microwaveMealsScore;
 
 // Klassifizierung basierend auf der Gesamtauswertung
-if ($overallScore >= 4) {
+if ($overallScore >= 8) {
   $classification = 'Toll! Du lebst gesund und ohne Spass...wie langweilig!';
   $gif = 'images/spass.gif';
   $sound = 'sounds/spass.mp3';
@@ -58,36 +94,3 @@ if ($overallScore >= 4) {
 unset($_SESSION['physical_health'], $_SESSION['supplements'], $_SESSION['physical_activity'], $_SESSION['activity_type'], $_SESSION['activity_importance'], $_SESSION['carbohydrates_meals'], $_SESSION['protein_meals'], $_SESSION['vegetable_meals'], $_SESSION['fruit_meals'], $_SESSION['microwave_meals']);
 session_destroy();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <?php include 'header.php'; ?>
-
-  <div class="container">
-    <h1>Feedback</h1>
-    <p><?php echo $classification; ?></p>
-  </div>
-  <div class="container">
-  <h1>Feedback</h1>
-  <p><?php echo $classification; ?></p>
-  <?php if ($overallScore >= 4): ?>
-    <video src="<?php echo $video; ?>" controls></video>
-  <?php else: ?>
-    <img src="<?php echo $gif; ?>" alt="GIF" />
-  <?php endif; ?>
-</div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
