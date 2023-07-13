@@ -2,9 +2,12 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $_SESSION['vegetable-meals'] = $_POST['vegetable-meals'];
-  header('Location: q9.php');
-  exit;
+  if (isset($_POST['vegetable-meals'])) { // Überprüfen, ob die Frage zu "supplements" beantwortet wurde (aktuelle Frage)
+    $_SESSION['protein-meals'] = $_POST['protein-meals'];   // Speichern der vorherigen Benutzerantwort in einer Session-Variablen um das am Ende zusammen zu zählen
+    // Weiterleitung zur nächsten Frage
+    header('Location: q9.php'); //Die Funktion "header" ist anscheinend ein vorgegebener Funktionsname in PHP der speziell für das Senden von HTTP-Headern verwendet wird
+    exit;
+  }
 }
 ?>
 
