@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['physical-activity-type'])) {
     $_SESSION['physical-activity'] = $_POST['physical-activity'];
 
-    header('Location: q4.php');
+    header('Location: q5.php');
     exit;
   }
 }

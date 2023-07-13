@@ -2,9 +2,12 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $_SESSION['activity_type'] = $_POST['activity-type'];
-  header('Location: q6.php');
-  exit;
+  if (isset($_POST['activity-importance'])) {
+    $_SESSION['physical-activity-type'] = $_POST['physical-activity-type'];
+
+    header('Location: q6.php');
+    exit;
+  }
 }
 ?>
 
