@@ -35,7 +35,7 @@
   
   <script>
     function validateForm(event) {
-      event.preventDefault(); // kein automatisches Absenden des Formulars
+      event.preventDefault(); // kein automatisches absenden des formulars
       
       //rangeslider vali
       var rangeInput = document.getElementById("rangeInput");
