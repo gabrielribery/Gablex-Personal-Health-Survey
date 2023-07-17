@@ -1,9 +1,33 @@
 <?php
 session_start();
 
-// Redirect to the next question or the feedback page
+// Check if all previous questions are answered
 if (isset($_SESSION['question10'])) {
   header('Location: feedback.php');
+  exit;
+} elseif (isset($_SESSION['question9'])) {
+  header('Location: question10.php');
+  exit;
+} elseif (isset($_SESSION['question8'])) {
+  header('Location: question9.php');
+  exit;
+} elseif (isset($_SESSION['question7'])) {
+  header('Location: question8.php');
+  exit;
+} elseif (isset($_SESSION['question6'])) {
+  header('Location: question7.php');
+  exit;
+} elseif (isset($_SESSION['question5'])) {
+  header('Location: question6.php');
+  exit;
+} elseif (isset($_SESSION['question4'])) {
+  header('Location: question5.php');
+  exit;
+} elseif (isset($_SESSION['question3'])) {
+  header('Location: question4.php');
+  exit;
+} elseif (isset($_SESSION['question2'])) {
+  header('Location: question3.php');
   exit;
 }
 ?>
@@ -15,8 +39,8 @@ if (isset($_SESSION['question10'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Survey</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/css/bootstrap.min.css">
-</head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></head>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 <body>
   <div class="container">

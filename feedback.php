@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+// Check if the user is accessing the feedback page directly without going through all the questions
+if (!isset($_SESSION['question10'])) {
+  header('Location: index.php');
+  exit;
+}
+
+// Clear the session data
+session_unset();
+session_destroy();
+
 // Retrieve the stored data from session variables
 $question1Value = $_SESSION['question1'];
 $question2Value = $_SESSION['question2'];

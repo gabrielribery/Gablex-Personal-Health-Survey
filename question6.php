@@ -11,6 +11,16 @@ if (isset($_SESSION['question10'])) {
   header('Location: feedback.php');
   exit;
 }
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Store the answer in the session
+  $_SESSION['question6'] = $_POST['question6'];
+  
+  // Redirect to the next question
+  header('Location: question7.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +37,7 @@ if (isset($_SESSION['question10'])) {
   <div class="container">
     <div class="text-center">
       <h1>Question 6</h1>
-      <form action="question7.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question6">An einem typischen Tag: Wie viele deiner Malzeiten oder Snacks enthalten Kohlenhydrate?</label>
           <input type="number" class="form-control" id="question6" name="question6">

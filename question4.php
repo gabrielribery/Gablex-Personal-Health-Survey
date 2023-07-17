@@ -11,6 +11,16 @@ if (isset($_SESSION['question10'])) {
   header('Location: feedback.php');
   exit;
 }
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Store the answer in the session
+  $_SESSION['question4'] = $_POST['question4'];
+  
+  // Redirect to the next question
+  header('Location: question5.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +37,7 @@ if (isset($_SESSION['question10'])) {
   <div class="container">
     <div class="text-center">
       <h1>Question 4</h1>
-      <form action="question5.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question4">Welche zusätzliche körperliche Aktivität betreibst du am meisten?</label>
           <div class="form-check">
@@ -52,6 +62,30 @@ if (isset($_SESSION['question10'])) {
             <input class="form-check-input" type="radio" name="question4" id="activity_hike" value="Wandern">
             <label class="form-check-label" for="activity_hike">
               Wandern
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="question4" id="activity_dance" value="Tanzen">
+            <label class="form-check-label" for="activity_dance">
+              Tanzen
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="question4" id="activity_aerobics" value="Aerobics">
+            <label class="form-check-label" for="activity_aerobics">
+              Aerobics
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="question4" id="activity_pilates" value="Pilates">
+            <label class="form-check-label" for="activity_pilates">
+              Pilates
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="question4" id="activity_team_sport" value="Team Sport">
+            <label class="form-check-label" for="activity_team_sport">
+              Team Sport
             </label>
           </div>
           <div class="form-check">

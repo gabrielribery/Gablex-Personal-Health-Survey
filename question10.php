@@ -11,6 +11,16 @@ if (isset($_SESSION['question10'])) {
   header('Location: feedback.php');
   exit;
 }
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Store the answer in the session
+  $_SESSION['question10'] = $_POST['question10'];
+  
+  // Redirect to the feedback page
+  header('Location: feedback.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +37,7 @@ if (isset($_SESSION['question10'])) {
   <div class="container">
     <div class="text-center">
       <h1>Question 10</h1>
-      <form action="feedback.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question10">An einem typischen Tag: Wie viele deiner Malzeiten kommen aus der Mikrowelle oder sind schon fertig zubereitet?</label>
           <input type="number" class="form-control" id="question10" name="question10">

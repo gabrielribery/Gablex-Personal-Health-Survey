@@ -11,6 +11,16 @@ if (isset($_SESSION['question10'])) {
   header('Location: feedback.php');
   exit;
 }
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Store the answer in the session
+  $_SESSION['question5'] = $_POST['question5'];
+  
+  // Redirect to the next question
+  header('Location: question6.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +37,7 @@ if (isset($_SESSION['question10'])) {
   <div class="container">
     <div class="text-center">
       <h1>Question 5</h1>
-      <form action="question6.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question5">Hast du das Gefühl, zu wenig, genügend oder viel zu viel zusätzliche körperliche Aktivitäten zu betreiben?</label>
           <input type="range" class="form-range" id="question5" name="question5" min="1" max="5" step="1">
