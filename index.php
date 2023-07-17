@@ -70,13 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       letter-spacing: 110px;
     }
 
-    .slider-image {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  width: 30px; /* Hier wird die Breite des Bildes festgelegt */
-  height: auto; /* Die Höhe wird automatisch angepasst */
+    #sliderImg {
+  display: block;
+  margin: 0 auto;
+  max-width: 30px;
+  height: auto;
 }
+
+
+
 
   </style>
 </head>
