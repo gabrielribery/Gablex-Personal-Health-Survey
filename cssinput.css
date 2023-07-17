@@ -9,10 +9,11 @@ input[type="range"] {
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
-    background-color: #333;
-    border-radius: 50%;
+    width: 30px; /* Anpassen der Breite des Thumb-Elements */
+    height: 30px; /* Anpassen der Höhe des Thumb-Elements */
+    background-image: url("path/zum/bild.jpg"); /* Pfad zum gewünschten Bild */
+    background-size: cover; /* Das Bild im Thumb-Element abdecken */
+    border: none; /* Den Rahmen entfernen, wenn erforderlich */
     cursor: pointer;
   }
   

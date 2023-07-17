@@ -52,9 +52,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Survey</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="cssinput.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <style>
+    .slider-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+
+    .slider-values {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      letter-spacing: 110px;
+    }
+
+    .slider-image {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 30px; /* Hier wird die Breite des Bildes festgelegt */
+  height: auto; /* Die Höhe wird automatisch angepasst */
+}
+
+  </style>
+</head>
 
 <body>
   <div class="container">
@@ -64,12 +89,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question1">How healthy are you physically?</label>
-          <input type="range" class="form-range" id="question1" name="question1" min="1" max="5" step="1">
+          <div class="slider-container">
+            <div class="slider-values">
+              <span>0</span>
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+            </div>
+            <input type="range" class="form-range" id="question1" name="question1" min="0" max="5" step="1">
+          </div>
+        </div>
+        <div class="slider-image">
+          <img id="sliderImg" src="" alt="Slider Image">
         </div>
         <button type="submit" class="btn btn-primary">Next</button>
       </form>
     </div>
   </div>
+
+  <script>
+    const slider = document.getElementById("question1");
+    const sliderImg = document.getElementById("sliderImg");
+
+    slider.addEventListener("input", function() {
+      const value = this.value;
+      sliderImg.src = `images/sli${value}.png`;
+    });
+  </script>
 </body>
 
 </html>
+
