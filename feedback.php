@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['physical_health'], $_SESSION['supplements'], $_SESSION['physical_activity'], $_SESSION['activity_type'], $_SESSION['activity_importance'], $_SESSION['carbohydrates_meals'], $_SESSION['protein_meals'], $_SESSION['vegetable_meals'], $_SESSION['fruit_meals'], $_SESSION['microwave_meals'])) {
 
-  header('Location: index.php'); // Weiterleitung zur Startseite, wenn nicht alle Fragen beantwortet wurden
+  header('Location: index.php'); // Weiterleitung zur Startseite wenn nicht alle Fragen beantwortet
   exit;
 }
 

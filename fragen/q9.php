@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div class="container">
     <h1>Frage 9</h1>
-    <form action="q9.php" method="post">
+    <form action="q10.php" method="post">
       <div class="mb-3">
         <label for="fruit-meals">An einem typischen Tag: Wie viele deiner Malzeiten oder Snacks enthalten Früchte?</label>
         <input type="number" class="form-control" id="fruit-meals" name="fruit-meals">
