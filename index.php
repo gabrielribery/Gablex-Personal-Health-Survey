@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     #sliderImg {
   display: block;
   margin: 0 auto;
-  max-width: 30px;
+  max-width: 300px;
   height: auto;
 }
 
@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 
   <script>
+    //script für bildwechsel bei slider
     const slider = document.getElementById("question1");
     const sliderImg = document.getElementById("sliderImg");
 
