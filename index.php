@@ -30,6 +30,19 @@ if (isset($_SESSION['question10'])) {
   header('Location: question3.php');
   exit;
 }
+
+// Process the form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Validate and process the submitted data
+
+  // Set the session variable for question 2
+  $_SESSION['question2'] = $_POST['question1'];
+
+  // Redirect to the next question
+  header('Location: question2.php');
+  exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +60,7 @@ if (isset($_SESSION['question10'])) {
     <div class="text-center">
       <h1>Welcome to the Survey</h1>
       <p>Introduction to the survey.</p>
-      <form action="question2.php" method="POST">
+      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
           <label for="question1">How healthy are you physically?</label>
           <input type="range" class="form-range" id="question1" name="question1" min="1" max="5" step="1">
