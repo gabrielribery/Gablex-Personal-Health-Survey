@@ -17,4 +17,6 @@
         include './question-template-switch.php';
         include './footer.php';
     ?>
+      <canvas id="myCanvas" style="position: fixed; top: 0; left: 0; z-index: -1; background-color: transparent;"></canvas>
+
 </body>

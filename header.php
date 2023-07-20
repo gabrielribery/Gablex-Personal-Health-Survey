@@ -13,6 +13,4 @@
       <button id="start-effect-btn">Help</button>
     </div>
   </header>
-  <script src="script.js"></script>
-
 
