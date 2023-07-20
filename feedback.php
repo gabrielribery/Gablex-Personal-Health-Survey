@@ -1,70 +1,47 @@
 <?php
-    
-    session_start();
-    error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ session_start();
+include "data-collector.php";
+include "evaluate-user-input.php";
+include "header.php";
+?>
 
-    ?>
+<div class="row">
+    <div class="col-sm-8">
+        <!-- CONTENT -->
+        <h7>Feedback</h7>
+        <h3>Danke für's Mitmachen!</h3>
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umfrage Feedback</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
-<body>
+        <?php
+        // Stelle sicher, dass die Session gestartet wurde
+        //  // session_start();
 
-<div class="container">
-    <h1>Umfrage Feedback</h1>
+        // Überprüfe, ob das Array mit dem Schlüssel "answers" in der Session existiert
+        if (isset($_SESSION["answers"])) {
+            $answers = $_SESSION["answers"];
+        } else {
+            // Setze ein Standard-Array, falls "answers" nicht existiert
+            $answers = array();
+        }
 
-    <?php
-    
-    
-    // Überprüfen, ob die Umfragedaten in der Session vorhanden sind
-    if (isset($_SESSION['survey_data'])) {
-        $surveyData = $_SESSION['survey_data'];
-        unset($_SESSION['survey_data']); // Umfragedaten aus der Session entfernen
+        // Bewertung der Benutzerantworten durchführen
+        $totalPoints = evaluateUserInput($answers);
+
+        echo "<p></p>";
+        echo "<p class='final-feedback'>" . "Du hast $totalPoints von 33 Punkten erreicht." . "</p>";
+
+        if ($totalPoints < 12) {
+            echo "<p class='final-feedback'>" . "Bitte kümmere dich mehr um deine Gesundheit!" . "</p>";
+        } elseif ($totalPoints < 24) {
+            echo "<p class='final-feedback'>" . "Du scheinst ok zu sein, könntest aber noch mehr für deine Gesundheit tun." . "</p>";
+        } else {
+            echo "<p class='final-feedback'>" . "Gratuliere, du bist sehr fit!" . "</p>";
+        }
+
+        echo "<p></p>";
         ?>
-
-        <h3>Vielen Dank für Ihre Teilnahme an der Umfrage!</h3>
-        <p>Hier sind Ihre Antworten:</p>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Frage</th>
-                    <th>Antwort</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($surveyData as $questionIndex => $response) { ?>
-                    <tr>
-                        <td><?php echo $response['question-text']; ?></td>
-                        <td>
-                            <?php
-                            if (isset($response['response'])) {
-                                if (is_array($response['response'])) {
-                                    echo implode(", ", $response['response']);
-                                } else {
-                                    echo $response['response'];
-                                }
-                            } else {
-                                echo "Keine Antwort";
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-
-    <?php } else { ?>
-        <p>Keine Umfragedaten gefunden.</p>
-    <?php } ?>
-
+        <button type="button" class="btn btn-primary" onclick="document.location='/index.php'">Repeat</button>
+        <p class="spacer"></p>
+        <!-- END OF CONTENT -->
+    </div>
 </div>
-
-</body>
-</html>
+<?php include 'php/footer.php'; ?>

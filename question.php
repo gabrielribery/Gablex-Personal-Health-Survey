@@ -11,7 +11,7 @@
 <body>
 
     <?php
-    
+         session_start();
         include './data-collector.php';
         include './header.php';
         include './question-template-switch.php';

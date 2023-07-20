@@ -1,4 +1,6 @@
-
+<?php
+// session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +14,8 @@
  <body>
 
 <?php
+ session_start();
+
     include './header.php';
     include './question-template-switch.php';
     include './footer.php';
@@ -19,4 +23,3 @@
 
 </body>
 </html>
-

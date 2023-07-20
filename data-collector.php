@@ -1,32 +1,36 @@
 <?php
+/*
+Muss session_start() vor dem Gebrauch von $_SESSION ausgeführt werden
+Am Besten ganz am Anfang einer Webseite, bevor irgendwelche andere
+PHP-Skripte ausgeführt werden.
 
-session_start();
+Auf der index.php-Seite wird die Session zurückgesetzt und frisch
+gestartet, damit die Umfrage von Vorne wiederholt werden kann
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Überprüfen, ob die Frageindizes vorhanden sind und eine Antwort übermittelt wurde
-    if (isset($_POST['questionIndex']) && isset($_POST['response'])) {
-        $questionIndex = $_POST['questionIndex'];
-        $response = $_POST['response'];
+*/
 
-        // Überprüfen, ob die 'survey_data'-Session-Variablen bereits existiert
-        if (!isset($_SESSION['survey_data'])) {
-            $_SESSION['survey_data'] = array();
-        }
+// session_start();
 
-        // Frageindex und Antwort zur 'survey_data'-Session hinzufügen
-        $_SESSION['survey_data'][$questionIndex] = array(
-            'question-text' => QUESTIONS[$questionIndex]['question-text'],
-            'response' => $response,
-        );
+if (str_contains($_SERVER['SCRIPT_NAME'], "index.php")) {
+session_destroy();
+// // session_start();
 
-        // Weiterleiten zur nächsten Frage oder zur Feedback-Seite, je nachdem ob es weitere Fragen gibt
-        if ($questionIndex + 1 < count(QUESTIONS)) {
-            header("Location: ./question.php");
-            exit();
-        } else {
-            header("Location: ./feedback.php");
-            exit();
-        }
-    }
 }
+
+// Hilfswerkzeuge laden (prettyPrint)
+include_once './tools.php';
+
+
+if (isset($_POST["questionIndex"])) {
+// Baue den Schlüssel für die letzte Frage.
+$lastQuestionID = "question-" . $_POST["questionIndex"];
+
+// Speichere alle Daten des letzen Posts mit den Namen $lastPageID in der Session.
+$_SESSION[$lastQuestionID] = $_POST;
+}
+
+// DEVONLY: Gib die aktuelle $_SESSION in die Seite aus.
+// prettyPrint($_SERVER['SCRIPT_NAME']);
+// prettyPrint($_ SESSION);
+
 ?>
