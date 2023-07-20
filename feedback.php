@@ -8,8 +8,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ?>
-
-
 <div class="row">
     <div class="col-sm-8">
         <h7>Feedback</h7>
@@ -47,5 +45,7 @@ error_reporting(E_ALL);
         <button type="button" class="btn btn-primary" onclick="document.location='/index.php'">Repeat</button>
         <p class="spacer"></p>
     </div>
+    <canvas id="myCanvas" style="position: fixed; top: 0; left: 0; z-index: -1; background-color: transparent;"></canvas>
+
 </div>
 <?php include 'footer.php'; ?>

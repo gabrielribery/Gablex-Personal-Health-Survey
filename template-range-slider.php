@@ -3,14 +3,6 @@ include_once './tools.php';
     $data = nextQuestionData();
 ?>
 <div class="container">
-    <h1>Slider</h1>
-    <div class="question">
-    <h4>Welcome to the quiz.</h4>
-<ul>
-    <li>Crying is allowed but cry quietly.</li>
-    <li>Make sure that no tears fall on the keyboard while crying.</li>
-    <li>If you have any questions, keep them to yourself.</li>
-</ul>
         <br><br>
         <?php
     $questionPrint = $data["questionIndex"] + 1;
@@ -36,5 +28,30 @@ include_once './tools.php';
 </form>
     </div>
 </div>
+<script>
+    // Get the slider and submit button elements
+    const slider = document.getElementById("range-slider");
+    const submitButton = document.querySelector(".btn");
+
+    // Function to validate the slider position
+    function validateRange(sliderId) {
+        const sliderValue = parseFloat(document.getElementById(sliderId).value);
+        return sliderValue !== 0; // Return true if the slider value is not 0
+    }
+
+    // Function to handle the mouseover event on the submit button
+    submitButton.addEventListener("mouseover", function () {
+        if (!validateRange("range-slider")) {
+            // Change the button's position randomly if the slider value is 0
+            submitButton.style.position = "absolute";
+            submitButton.style.left = Math.random() * (window.innerWidth - submitButton.offsetWidth) + "px";
+            submitButton.style.top = Math.random() * (window.innerHeight - submitButton.offsetHeight) + "px";
+        } else {
+            // Set the button's position to static if the slider value is not 0
+            submitButton.style.position = "static";
+        }
+    });
+</script>
+
 
 

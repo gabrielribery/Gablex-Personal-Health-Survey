@@ -1,21 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f0f0f0;
-  padding: 10px;
+  flex-direction: column;
+  min-height: 100vh; /* Set the body to at least the full height of the viewport */
 }
 
-/* Füge die Klasse "rainbow-effect" zum Header hinzu */
-header.rainbow-effect {
-  animation: rainbow-effect 3s linear infinite;
-}
-
+header,
 footer {
   display: flex;
   align-items: center;
@@ -24,16 +15,23 @@ footer {
   padding: 10px;
 }
 
+header.rainbow-effect,
 footer.rainbow-effect {
   animation: rainbow-effect 3s linear infinite;
 }
 
-.logo {
-  /* Platzieren und stylen Sie hier Ihr Logo-Bild */
+
+.logo img {
+  display: inline-block;
+  width: 150px; /* Adjust the width to your desired size */
+  height: auto; /* To maintain the aspect ratio */
+  margin-right: 20px; /* Add some spacing between the logo and header text */
 }
+
 
 .header-text {
   text-align: center;
+  font-family: Arial, sans-serif; /* Replace with your preferred font */
 }
 
 .buttons {

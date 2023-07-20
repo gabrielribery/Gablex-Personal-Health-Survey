@@ -32,4 +32,33 @@
         </form>
     </div>
 </div>
+<script>
+    // Get the radio buttons and submit button elements
+    const radioButtons = document.querySelectorAll('input[name="single-choice"]');
+    const submitButton = document.querySelector(".btn");
+
+    // Function to validate the radio buttons
+    function validateRadios(radioGroupName) {
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                return true; // Return true if any radio button is selected
+            }
+        }
+        return false; // Return false if no radio button is selected
+    }
+
+    // Function to handle the mouseover event on the submit button
+    submitButton.addEventListener("mouseover", function () {
+        if (!validateRadios("single-choice")) {
+            // Change the button's position randomly if no radio button is selected
+            submitButton.style.position = "absolute";
+            submitButton.style.left = Math.random() * (window.innerWidth - submitButton.offsetWidth) + "px";
+            submitButton.style.top = Math.random() * (window.innerHeight - submitButton.offsetHeight) + "px";
+        } else {
+            // Set the button's position to static if a radio button is selected
+            submitButton.style.position = "static";
+        }
+    });
+</script>
+
 
