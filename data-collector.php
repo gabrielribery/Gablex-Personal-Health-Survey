@@ -1,16 +1,11 @@
 <?php
-// Muss session_start() vor dem Gebrauch von $_SESSION ausgeführt werden
-// Am besten ganz am Anfang einer Webseite, bevor irgendwelche anderen PHP-Skripte ausgeführt werden.
-
-// session_start(); // Das Session-Starten sollte in den Skripten erfolgen, die die Session verwenden, nicht hier.
-
+require_once 'session.php';
 if (str_contains($_SERVER['SCRIPT_NAME'], "index.php")) {
-    session_destroy();
-    // session_start(); // Das Session-Starten sollte in den Skripten erfolgen, die die Session verwenden, nicht hier.
+    // session_destroy();
 }
 
-// Hilfswerkzeuge laden (prettyPrint)
 include_once './tools.php';
+include 'debug.php';
 
 if (isset($_POST["questionIndex"])) {
     // Baue den Schlüssel für die letzte Frage.

@@ -1,5 +1,6 @@
 <?php
-session_start();
+include 'debug.php';
+require_once 'session.php';
 include "data-collector.php";
 include "evaluate-user-input.php";
 include "header.php";
@@ -17,39 +18,18 @@ error_reporting(E_ALL);
         <?php
        
         // Überprüfe, ob das Array mit dem Schlüssel "answers" in der Session existiert
-        if (isset($_SESSION["answers"])) {
-            $answers = $_SESSION["answers"];
+        if (isset($_SESSION)) {
+            $answers = $_SESSION;
         } else {
             // Setze ein Standard-Array, falls "answers" nicht existiert
             $answers = array();
         }
-
-        $result = evaluateUserInput($answers);
-        $totalPoints = $result["totalPoints"];
-        // Array mit den möglichen Punkten für jede Frage
-        $possiblePoints = array(3, 1, 3, 9, 3, 3, 10, 3, 3, 3);
-
-echo "<pre>";
-print_r($answers);
-echo "</pre>";
-
-if (isset($_SESSION["answers"])) {
-    $answers = $_SESSION["answers"];
-
-    echo "<p><strong>Erreichte Punkte pro Frage:</strong></p>";
-    for ($i = 1; $i <= count($possiblePoints); $i++) {
-        $questionKey = "question-" . $i;
-
-        if (isset($answers[$questionKey])) {
-            $pointsForQuestion = evaluateUserInput([$questionKey => $answers[$questionKey]]);
-            $achievedPoints = $pointsForQuestion["totalPoints"];
-        } else {
-            $achievedPoints = 0;
+        $totalPoints = 0;
+        foreach($answers as $answer){
+            $result = evaluateUserInput($answers);
+            //print_r($answers);
+            $totalPoints += $result['totalPoints'];
         }
-
-        echo "<p>Frage $i: $achievedPoints von " . $possiblePoints[$i - 1] . "</p>";
-    }
-}
 
         echo "<p></p>";
         echo "<p class='final-feedback'>" . "Du hast $totalPoints von 33 Punkten erreicht." . "</p>";
