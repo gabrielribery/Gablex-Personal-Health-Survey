@@ -1,36 +1,30 @@
 <?php
-/*
-Muss session_start() vor dem Gebrauch von $_SESSION ausgeführt werden
-Am Besten ganz am Anfang einer Webseite, bevor irgendwelche andere
-PHP-Skripte ausgeführt werden.
+// Muss session_start() vor dem Gebrauch von $_SESSION ausgeführt werden
+// Am besten ganz am Anfang einer Webseite, bevor irgendwelche anderen PHP-Skripte ausgeführt werden.
 
-Auf der index.php-Seite wird die Session zurückgesetzt und frisch
-gestartet, damit die Umfrage von Vorne wiederholt werden kann
-
-*/
-
-// session_start();
+// session_start(); // Das Session-Starten sollte in den Skripten erfolgen, die die Session verwenden, nicht hier.
 
 if (str_contains($_SERVER['SCRIPT_NAME'], "index.php")) {
-session_destroy();
-// // session_start();
-
+    session_destroy();
+    // session_start(); // Das Session-Starten sollte in den Skripten erfolgen, die die Session verwenden, nicht hier.
 }
 
 // Hilfswerkzeuge laden (prettyPrint)
 include_once './tools.php';
 
-
 if (isset($_POST["questionIndex"])) {
-// Baue den Schlüssel für die letzte Frage.
-$lastQuestionID = "question-" . $_POST["questionIndex"];
+    // Baue den Schlüssel für die letzte Frage.
+    $lastQuestionID = "question-" . $_POST["questionIndex"];
 
-// Speichere alle Daten des letzen Posts mit den Namen $lastPageID in der Session.
-$_SESSION[$lastQuestionID] = $_POST;
+    // Speichere alle Daten des letzten Posts mit dem Namen $lastQuestionID in der Session.
+    $_SESSION[$lastQuestionID] = $_POST;
+
+    // Speichere alle Daten des letzten Posts zusätzlich unter dem allgemeinen Namen "answers" in der Session.
+    $_SESSION["answers"] = $_POST;
 }
 
 // DEVONLY: Gib die aktuelle $_SESSION in die Seite aus.
 // prettyPrint($_SERVER['SCRIPT_NAME']);
-// prettyPrint($_ SESSION);
+// prettyPrint($_SESSION);
 
 ?>

@@ -1,20 +1,21 @@
 <?php
- session_start();
+session_start();
 include "data-collector.php";
 include "evaluate-user-input.php";
 include "header.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
+
 
 <div class="row">
     <div class="col-sm-8">
-        <!-- CONTENT -->
         <h7>Feedback</h7>
         <h3>Danke für's Mitmachen!</h3>
 
         <?php
-        // Stelle sicher, dass die Session gestartet wurde
-        //  // session_start();
-
+       
         // Überprüfe, ob das Array mit dem Schlüssel "answers" in der Session existiert
         if (isset($_SESSION["answers"])) {
             $answers = $_SESSION["answers"];
@@ -23,8 +24,32 @@ include "header.php";
             $answers = array();
         }
 
-        // Bewertung der Benutzerantworten durchführen
-        $totalPoints = evaluateUserInput($answers);
+        $result = evaluateUserInput($answers);
+        $totalPoints = $result["totalPoints"];
+        // Array mit den möglichen Punkten für jede Frage
+        $possiblePoints = array(3, 1, 3, 9, 3, 3, 10, 3, 3, 3);
+
+echo "<pre>";
+print_r($answers);
+echo "</pre>";
+
+if (isset($_SESSION["answers"])) {
+    $answers = $_SESSION["answers"];
+
+    echo "<p><strong>Erreichte Punkte pro Frage:</strong></p>";
+    for ($i = 1; $i <= count($possiblePoints); $i++) {
+        $questionKey = "question-" . $i;
+
+        if (isset($answers[$questionKey])) {
+            $pointsForQuestion = evaluateUserInput([$questionKey => $answers[$questionKey]]);
+            $achievedPoints = $pointsForQuestion["totalPoints"];
+        } else {
+            $achievedPoints = 0;
+        }
+
+        echo "<p>Frage $i: $achievedPoints von " . $possiblePoints[$i - 1] . "</p>";
+    }
+}
 
         echo "<p></p>";
         echo "<p class='final-feedback'>" . "Du hast $totalPoints von 33 Punkten erreicht." . "</p>";
@@ -41,7 +66,6 @@ include "header.php";
         ?>
         <button type="button" class="btn btn-primary" onclick="document.location='/index.php'">Repeat</button>
         <p class="spacer"></p>
-        <!-- END OF CONTENT -->
     </div>
 </div>
-<?php include 'php/footer.php'; ?>
+<?php include 'footer.php'; ?>
