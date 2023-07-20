@@ -8,7 +8,6 @@
 
     <h1>Radio-Button</h1>
 
-    <img class="image" src="./images/health.jpg" alt="health.jpg">
 
     <div class="question">
 

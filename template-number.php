@@ -8,8 +8,6 @@
 
     <h1>Number-Input</h1>
 
-    <img class="image" src="./images/health.jpg" alt="health.jpg">
-
     <div class="question">
 
         <br><br>
@@ -27,7 +25,7 @@
         <form action="<?php echo $data["action"]; ?>" method="post" onsubmit="return validateNumber();">
 
                 <input type="number" id="number" name="number"><br><br>
-                <label for="number">This is the label</label>
+                <label for="number">Input number HERE</label>
 
 
             <input type="hidden" name="questionIndex" value='<?php echo $data["questionIndex"]; ?>'>

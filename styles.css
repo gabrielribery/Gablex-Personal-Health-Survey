@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  .logo {
+    /* Platzieren und stylen Sie hier Ihr Logo-Bild */
+  }
+  
+  .header-text {
+    text-align: center;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Animation für den Header */
+  @keyframes rainbow-effect {
+    0% { background-color: red; }
+    16.6% { background-color: orange; }
+    33.3% { background-color: yellow; }
+    50% { background-color: green; }
+    66.6% { background-color: blue; }
+    83.3% { background-color: indigo; }
+    100% { background-color: violet; }
+  }
+  
+  .rainbow-effect {
+    animation: rainbow-effect 3s linear infinite;
+  }
+  
+  /* Fügen Sie hier die responsive Anpassungen ein */
+  
+  

@@ -1,7 +1,7 @@
 /*range slider*/
 
 input[type="range"] {
-    width: 100%;
+    width: 50%;
     height: 10px;
     background-color: #ccc;
   }

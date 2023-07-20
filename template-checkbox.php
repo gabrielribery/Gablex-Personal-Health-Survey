@@ -8,12 +8,9 @@
 
     <h1>Checkbox</h1>
 
-    <img class="image" src="./images/health.jpg" alt="health.jpg">
-
     <div class="question">
 
         <br><br>
-
 
         <?php
             $questionPrint = $data["questionIndex"] + 1;
