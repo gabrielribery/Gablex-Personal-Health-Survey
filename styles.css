@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set the body to at least the full height of the viewport */
+}
+
+header,
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+header.rainbow-effect,
+footer.rainbow-effect {
+  animation: rainbow-effect 3s linear infinite;
+}
+
+
+.logo img {
+  display: inline-block;
+  width: 150px; /* Adjust the width to your desired size */
+  height: auto; /* To maintain the aspect ratio */
+  margin-right: 20px; /* Add some spacing between the logo and header text */
+}
+
+
+.header-text {
+  text-align: center;
+  font-family: Arial, sans-serif; /* Replace with your preferred font */
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@keyframes rainbow-effect {
+  0% { background-color: red; }
+  16.6% { background-color: orange; }
+  33.3% { background-color: yellow; }
+  50% { background-color: green; }
+  66.6% { background-color: blue; }
+  83.3% { background-color: indigo; }
+  100% { background-color: violet; }
+}
