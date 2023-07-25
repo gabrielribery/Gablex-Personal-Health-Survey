@@ -1,9 +1,9 @@
 <?php
-include 'debug.php';
+include 'tools/debug.php';
 require_once 'session.php';
-include "data-collector.php";
-include "evaluate-user-input.php";
-include "header.php";
+include "tools/data-collector.php";
+include "tools/evaluate-user-input.php";
+include "header_footer/header.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
