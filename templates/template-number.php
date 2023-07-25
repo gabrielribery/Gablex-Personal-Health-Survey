@@ -21,6 +21,7 @@
             <button type="submit" class="btn btn-primary">Next</button>
             <p class="spacer"></p>
         </form>
+        </div>
     </div>
 </div>
 <script>
